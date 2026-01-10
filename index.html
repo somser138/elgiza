@@ -3,303 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عبدالعزيز الجيزاوي | HACKER & DEVELOPER</title>
+    <title>عبدالعزيز خالد | Web Developer</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --neon-green: #00ff41;
-            --dark-bg: #0d1117; /* GitHub Dark BG */
-            --glass-bg: rgba(255, 255, 255, 0.05); /* شفافية خفيفة */
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-shadow: rgba(0, 255, 65, 0.15);
+            --bg-color: #121212; /* لون خلفية غامق وهادي */
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --accent-color: #3b82f6; /* أزرق احترافي */
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: var(--neon-green);
-            font-family: 'Electrolize', sans-serif; /* خط مودرن معاصر */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Cairo', sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* عشان تأثيرات الخلفية */
-            position: relative;
-        }
-
-        /* تأثير الجليد/الزجاج على الخلفية */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(0,255,65,0.1) 0%, rgba(0,0,0,0) 70%);
-            animation: rotateBackground 20s linear infinite;
-        }
-
-        @keyframes rotateBackground {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .container {
-            max-width: 700px;
-            margin: 30px auto;
-            padding: 40px;
-            background: var(--glass-bg); /* خلفية زجاجية */
-            border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px 0 var(--glass-shadow); /* ظل زجاجي */
-            backdrop-filter: blur(10px); /* تأثير الضباب الزجاجي */
-            -webkit-backdrop-filter: blur(10px);
-            position: relative; /* عشان Z-index */
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* الصورة الشخصية */
-        .profile-pic {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 3px solid var(--neon-green);
-            box-shadow: 0 0 25px rgba(0, 255, 65, 0.7);
-            object-fit: cover;
-            margin-bottom: 25px;
-            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-        }
-        .profile-pic:hover {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 0 35px var(--neon-green), 0 0 50px rgba(0, 255, 65, 0.5);
-        }
-
-        h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            color: #fff; /* اسمك أبيض مع توهج */
-            text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green), 0 0 30px var(--neon-green);
-            font-family: 'Share Tech Mono', monospace; /* عشان يبان كود */
-        }
-
-        .subtitle {
-            font-size: 1.3em;
-            color: #ccc;
-            margin-top: -10px;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            font-family: 'Electrolize', sans-serif;
-        }
-
-        /* منطقة الكتابة التلقائية */
-        .typing-container {
-            min-height: 80px; /* عشان النص يتكتب براحته */
-            margin-bottom: 30px;
-            font-size: 1.6em;
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0.4);
-            padding: 15px 25px;
-            border-radius: 10px;
-            border: 1px solid rgba(0, 255, 65, 0.3);
-            box-shadow: inset 0 0 10px rgba(0, 255, 65, 0.3);
-            text-align: left;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Share Tech Mono', monospace;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .typing-text {
-            display: inline-block;
-            white-space: pre-wrap; /* عشان يحافظ على تنسيق المسافات */
-            overflow: hidden;
-            border-right: 3px solid var(--neon-green); /* مؤشر الكتابة */
-            animation: blink-caret 0.75s step-end infinite;
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--neon-green); }
-        }
-
-        /* قسم المشاريع */
-        .projects-section {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px dashed var(--glass-border);
-            width: 100%;
-        }
-        .projects-section h2 {
-            font-size: 2em;
-            color: #fff;
-            text-shadow: 0 0 10px var(--neon-green);
-            margin-bottom: 25px;
-        }
-        .project-card {
-            background: rgba(0, 255, 65, 0.05);
-            border: 1px solid rgba(0, 255, 65, 0.2);
-            padding: 25px;
+            width: 90%;
+            max-width: 600px;
+            background-color: var(--card-bg);
+            padding: 50px 30px;
             border-radius: 15px;
-            margin: 20px auto;
-            max-width: 500px;
-            box-shadow: 0 4px 15px rgba(0, 255, 65, 0.1);
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-            text-align: right; /* عشان المحتوى يبدأ من اليمين */
-        }
-        .project-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 8px 25px var(--neon-green), 0 0 30px rgba(0, 255, 65, 0.5);
-            border-color: var(--neon-green);
-        }
-        .project-card h3 {
-            color: #fff;
-            font-size: 1.7em;
-            margin-bottom: 10px;
-            text-shadow: 0 0 5px var(--neon-green);
-        }
-        .project-card p {
-            color: #ccc;
-            line-height: 1.7;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* ظل ناعم */
+            text-align: center;
+            border-top: 5px solid var(--accent-color); /* لمسة جمالية من فوق */
         }
 
-        /* أزرار التواصل */
-        .contact-links {
-            margin-top: 50px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            width: 100%;
-        }
-
-        .contact-btn {
-            text-decoration: none;
-            color: var(--dark-bg);
-            background-color: var(--neon-green);
-            padding: 15px 35px;
+        /* تنسيق البيانات الشخصية */
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: right; /* محاذاة لليمين عشان القائمة */
+            display: inline-block; /* عشان تتوسطن في النص */
             font-size: 1.2em;
-            font-weight: bold;
-            border-radius: 50px; /* شكل دائري للأزرار */
-            border: 2px solid var(--neon-green);
-            transition: all 0.4s ease-in-out;
-            box-shadow: 0 0 15px var(--neon-green);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .contact-btn:hover {
-            background-color: var(--dark-bg);
-            color: var(--neon-green);
-            box-shadow: 0 0 25px var(--neon-green), inset 0 0 15px var(--neon-green);
-            transform: translateY(-5px);
+        .info-list li {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
         }
 
-        .footer-status {
-            margin-top: 60px;
-            font-size: 0.9em;
-            color: #666;
-            border-top: 1px solid var(--glass-border);
-            padding-top: 20px;
-            width: 100%;
+        .label {
+            color: var(--accent-color);
+            font-weight: 800;
+            margin-left: 10px;
         }
-        .status-dot {
-            height: 10px;
-            width: 10px;
-            background-color: var(--neon-green);
-            border-radius: 50%;
+
+        .value {
+            font-weight: 600;
+        }
+
+        /* العنوان الرئيسي */
+        h1 {
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .role {
+            color: #888;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+        }
+
+        /* قسم المشروع */
+        .project-box {
+            background-color: #252525;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 1px dashed #444;
+        }
+
+        .project-box h3 {
+            color: #fff;
+            margin-top: 0;
+        }
+
+        /* زر التيليجرام */
+        .telegram-btn {
             display: inline-block;
-            box-shadow: 0 0 10px var(--neon-green);
-            animation: blink-dot 2s infinite;
+            margin-top: 40px;
+            text-decoration: none;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
-        @keyframes blink-dot {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
+        .telegram-btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
         }
 
         /* تظبيط للموبايل */
-        @media (max-width: 768px) {
-            .container { margin: 15px; padding: 25px; }
-            h1 { font-size: 2em; }
-            .subtitle { font-size: 1em; }
-            .typing-container { font-size: 1.2em; min-height: 60px; padding: 10px 15px; }
-            .profile-pic { width: 150px; height: 150px; }
-            .project-card { width: 95%; padding: 20px; }
-            .contact-btn { padding: 12px 25px; font-size: 1em; }
+        @media (max-width: 500px) {
+            .info-list { width: 100%; font-size: 1em; }
+            .container { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <img src="profile.jpg" alt="عبدالعزيز الجيزاوي" class="profile-pic">
         
-        <h1>عبدالعزيز خالد الجيزاوي</h1>
-        <div class="subtitle">HACKER & WEB DEVELOPER</div>
-        
-        <div class="typing-container">
-            <span class="typing-text"></span>
+        <h1>عبدالعزيز خالد</h1>
+        <div class="role">&lt; Web Developer /&gt;</div>
+
+        <ul class="info-list">
+            <li>
+                <span class="label">الاسم:</span> 
+                <span class="value">عبدالعزيز خالد</span>
+            </li>
+            <li>
+                <span class="label">اللقب:</span> 
+                <span class="value">الجيزاوي</span>
+            </li>
+            <li>
+                <span class="label">السن:</span> 
+                <span class="value">18 سنة</span>
+            </li>
+        </ul>
+
+        <div class="project-box">
+            <h3>أحدث أعمالي</h3>
+            <p style="color: #bbb; line-height: 1.6;">
+                قمت بتصميم وتطوير منصة تعليمية متكاملة<br>
+                <strong style="color: #fff;">Full Mark Platform</strong>
+            </p>
         </div>
 
-        <div class="projects-section">
-            <h2>مشاريعي</h2>
-            <div class="project-card">
-                <h3>Full Mark Platform</h3>
-                <p>منصة تعليمية متكاملة لطلاب الثانوية العامة، تم تصميمها وتأمينها بالكامل.</p>
-            </div>
-        </div>
+        <a href="https://t.me/elgizawy9" target="_blank" class="telegram-btn">
+            تواصل معي على Telegram
+        </a>
 
-        <div class="contact-links">
-            <a href="https://t.me/elgizawy9" target="_blank" class="contact-btn">تواصل معي على تيليجرام</a>
-        </div>
-
-        <div class="footer-status">
-            <span class="status-dot"></span> System Status: ACTIVE | Powered by El-Gizawy
-        </div>
     </div>
-
-    <script>
-        const text = "اسمي عبدالعزيز خالد الجيزاوي.\nعندي 18 سنة.\nأنا مبرمج مواقع وهاكر أمني.";
-        const typingTextElement = document.querySelector('.typing-text');
-        let i = 0;
-        let speed = 70; // سرعة الكتابة بالمللي ثانية
-
-        function typeWriter() {
-            if (i < text.length) {
-                typingTextElement.textContent += text.charAt(i);
-                i++;
-                // لو وصلنا لسطر جديد، نستنى شوية قبل ما نكمل
-                if (text.charAt(i-1) === '\n') {
-                    speed = 300; // وقت أطول شوية عند السطر الجديد
-                } else {
-                    speed = 70; // نرجع السرعة العادية
-                }
-                setTimeout(typeWriter, speed);
-            } else {
-                // بعد ما يخلص كتابة، ممكن نعمل حاجة هنا لو عايز
-                // مثلاً، نوقف مؤشر الكتابة بعد فترة
-                typingTextElement.style.borderRight = 'none';
-            }
-        }
-
-        // ابدأ الكتابة لما الصفحة تتحمل
-        window.onload = function() {
-            typeWriter();
-        };
-    </script>
 
 </body>
 </html>
