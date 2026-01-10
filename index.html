@@ -11,11 +11,13 @@
 
     <style>
         :root {
-            --bg-color: #0f172a; /* كحلي غامق جداً */
+            --bg-color: #0f172a; /* كحلي غامق */
             --card-bg: #1e293b;
             --text-main: #f8fafc;
             --text-secondary: #94a3b8;
-            --accent: #38bdf8; /* أزرق سماوي */
+            /* اللون الجديد: أرجواني مضيء ومميز */
+            --accent: #a855f7; 
+            --accent-glow: rgba(168, 85, 247, 0.4);
         }
 
         body {
@@ -38,7 +40,6 @@
             padding: 20px;
         }
 
-        /* العنوان اللي طلبت تغييره */
         .top-header {
             font-size: 0.9em;
             letter-spacing: 3px;
@@ -52,10 +53,10 @@
 
         /* منطقة الكتابة التلقائية */
         .typing-area {
-            font-family: 'JetBrains Mono', monospace; /* خط شبه الكود */
-            font-size: 1.4em;
-            min-height: 180px; /* عشان الارتفاع ميتغيرش والكلام بيتكتب */
-            text-align: left; /* الكتابة تبدأ من الشمال */
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.3em;
+            min-height: 200px; /* زودت الطول شوية عشان الكلام زاد */
+            text-align: left;
             background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
@@ -71,7 +72,6 @@
             font-weight: bold;
         }
 
-        /* المؤشر اللي بينور ويطفي */
         .cursor {
             display: inline-block;
             width: 3px;
@@ -88,7 +88,7 @@
 
         /* كارت المشروع */
         .project-card {
-            display: block; /* عشان اللينك ياخد المساحة كلها */
+            display: block;
             text-decoration: none;
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             border: 1px solid var(--accent);
@@ -97,14 +97,14 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
-            opacity: 0; /* مخفي في الأول لحد ما الكتابة تخلص */
+            opacity: 0;
             animation: fadeIn 1s forwards;
-            animation-delay: 4.5s; /* يظهر بعد ما الكتابة تخلص */
+            animation-delay: 8s; /* تأخير لحد ما الكتابة تخلص */
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         .project-title {
@@ -127,30 +127,58 @@
             font-size: 0.9em;
         }
 
-        /* زر التيليجرام */
-        .social-link {
+        /* أزرار التواصل */
+        .contact-section {
             margin-top: 40px;
-            display: inline-block;
-            color: var(--text-secondary);
-            font-size: 1.5em;
-            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
             opacity: 0;
             animation: fadeIn 1s forwards;
-            animation-delay: 5s;
+            animation-delay: 8.5s;
         }
-        
-        .social-link:hover {
-            color: var(--accent);
-            transform: scale(1.1);
+
+        .social-btn {
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid transparent;
+        }
+
+        /* زر التيليجرام */
+        .btn-telegram {
+            background-color: #229ED9;
+            color: white;
+        }
+        .btn-telegram:hover {
+            box-shadow: 0 0 15px rgba(34, 158, 217, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* زر الواتساب */
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+        .btn-whatsapp:hover {
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+            transform: translateY(-3px);
         }
 
         @keyframes fadeIn {
             to { opacity: 1; }
         }
 
-        /* للموبايل */
         @media (max-width: 600px) {
-            .typing-area { font-size: 1.1em; padding: 20px; min-height: 150px; }
+            .typing-area { font-size: 1.1em; padding: 20px; min-height: 180px; }
+            .contact-section { flex-direction: column; }
+            .social-btn { justify-content: center; }
         }
     </style>
 </head>
@@ -164,25 +192,31 @@
         </div>
 
         <a href="https://fulll-mark.vercel.app/" target="_blank" class="project-card">
-            <h3 class="project-title">  Full Mark Platform</h3>
+            <h3 class="project-title">🚀 Full Mark Platform</h3>
             <div class="project-desc">A complete educational platform for high school students. Designed & Developed by Me.</div>
             <div class="visit-btn">Click to Visit website &rarr;</div>
         </a>
 
-        <div style="text-align: center;">
-            <a href="https://t.me/elgizawy9" target="_blank" class="social-link">
-                Telegram Contact
+        <div class="contact-section">
+            <a href="https://wa.me/201090747536" target="_blank" class="social-btn btn-whatsapp">
+                <span>WhatsApp</span>
+            </a>
+            
+            <a href="https://t.me/elgizawy9" target="_blank" class="social-btn btn-telegram">
+                <span>Telegram</span>
             </a>
         </div>
     </div>
 
     <script>
-        // الكلام اللي هيتكتب (بالانجليزي زي ما طلبت)
+        // البيانات الجديدة (بالانجليزي)
         const content = [
             "Name: Abdulaziz Khaled",
             "Nickname: El-Gizawy",
             "Age: 18 Years Old",
+            "Education: High School Student",
             "Role: Web Developer",
+            "Skill: Ethical Hacker", // الإضافة اللي طلبتها
         ];
 
         const target = document.getElementById('text-target');
@@ -194,18 +228,16 @@
                 if (charIndex < content[lineIndex].length) {
                     target.innerHTML += content[lineIndex].charAt(charIndex);
                     charIndex++;
-                    setTimeout(typeWriter, 50); // سرعة الكتابة
+                    setTimeout(typeWriter, 50); 
                 } else {
-                    // لما يخلص السطر، ينزل سطر جديد
                     target.innerHTML += "<br><br>"; 
                     lineIndex++;
                     charIndex = 0;
-                    setTimeout(typeWriter, 300); // يستنى شوية بين السطور
+                    setTimeout(typeWriter, 300); 
                 }
             }
         }
 
-        // تشغيل الوظيفة أول ما الموقع يفتح
         window.onload = typeWriter;
     </script>
 
