@@ -29,18 +29,16 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: 'Poppins', sans-serif; /* الخط الافتراضي انجليزي */
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             transition: 0.3s;
         }
 
-        /* تنسيق خاص للعربي */
         body.rtl {
             direction: rtl;
-            font-family: 'Cairo', sans-serif; /* الخط العربي */
+            font-family: 'Cairo', sans-serif;
         }
 
-        /* --- شريط التنقل --- */
         header {
             position: fixed;
             width: 100%;
@@ -73,11 +71,10 @@
         }
         .navbar a:hover, .navbar a.active { color: var(--main-color); }
 
-        /* --- زر الترجمة العائم --- */
         .lang-btn {
             position: fixed;
             bottom: 30px;
-            right: 30px; /* مكان الزرار */
+            right: 30px;
             background: var(--main-color);
             color: white;
             padding: 10px 20px;
@@ -95,10 +92,8 @@
             color: var(--main-color);
             transform: scale(1.1);
         }
-        /* في العربي نعكس مكان الزرار عشان م يضايقش */
         body.rtl .lang-btn { right: auto; left: 30px; }
 
-        /* --- الأقسام --- */
         section {
             padding: 100px 10% 50px;
             min-height: 100vh;
@@ -106,15 +101,12 @@
             align-items: center;
         }
 
-        /* --- قسم الرئيسية --- */
         .home {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 5rem;
             align-items: center;
         }
-        
-        /* عكس الترتيب في العربي عشان الصورة تيجي شمال والكلام يمين */
         body.rtl .home { direction: rtl; } 
 
         .home-img {
@@ -129,6 +121,8 @@
             position: relative;
             z-index: 2;
             border: 2px solid var(--main-color);
+            /* إضافة ظل للصورة عشان تبرز أكتر */
+            box-shadow: 0 0 25px rgba(255, 87, 34, 0.3);
         }
 
         .circle-glow {
@@ -157,19 +151,16 @@
             color: #ddd;
         }
 
-        /* مكان الكتابة التلقائية */
         .typing-text {
             font-size: 1.1rem;
             color: #aaa;
             line-height: 1.8;
             margin-bottom: 30px;
-            min-height: 100px; /* عشان الارتفاع ميتغيرش */
-            border-right: 2px solid var(--main-color); /* مؤشر الكتابة */
+            min-height: 100px;
+            border-right: 2px solid var(--main-color);
             padding-right: 5px;
             display: inline-block;
         }
-        
-        /* المؤشر في العربي يكون شمال */
         body.rtl .typing-text { border-right: none; border-left: 2px solid var(--main-color); padding-left: 5px; }
 
         .btn-box { display: flex; gap: 20px; }
@@ -198,7 +189,6 @@
         }
         .btn-outline:hover { background: var(--main-color); color: white; }
 
-        /* --- قسم المشاريع --- */
         .heading { text-align: center; font-size: 3rem; margin-bottom: 50px; }
         .heading span { color: var(--main-color); }
 
@@ -235,7 +225,9 @@
         }
     </style>
 </head>
-<body class="ltr"> <div class="lang-btn" onclick="toggleLanguage()">عربي</div>
+<body class="ltr">
+
+    <div class="lang-btn" onclick="toggleLanguage()">عربي</div>
 
     <header>
         <a href="#" class="logo">El-Gizawy<span>.</span></a>
@@ -250,7 +242,7 @@
     <section class="home" id="home">
         <div class="home-img">
             <div class="circle-glow"></div>
-            <img src="profile.jpg" alt="Abdulaziz">
+            <img src="https://i.ibb.co/nNsr0rn8/Profile-jpg.jpg" alt="Abdulaziz">
         </div>
 
         <div class="home-text">
@@ -271,7 +263,7 @@
         
         <div class="projects-container">
             <div class="project-box">
-                <h3 data-key="p1_title">  Full Mark Platform</h3>
+                <h3 data-key="p1_title">🚀 Full Mark Platform</h3>
                 <p data-key="p1_desc">An educational platform for high school students. Designed & Developed by me.</p>
                 <a href="https://fulll-mark.vercel.app/" target="_blank" class="btn" data-key="btn_visit">Visit Website</a>
             </div>
@@ -295,7 +287,6 @@
     </section>
 
     <script>
-        // نصوص اللغتين
         const translations = {
             en: {
                 btn_lang: "عربي",
@@ -305,7 +296,7 @@
                 type_text: "Hello! I am Abdulaziz Khaled (El-Gizawy). I am 18 years old, a High School Student. I build secure websites and find vulnerabilities.",
                 btn_projects: "My Projects", btn_contact: "Contact Me",
                 proj_title: "Latest <span>Projects</span>",
-                p1_title: "  Full Mark Platform", p1_desc: "An educational platform for high school students. Designed & Developed by me.",
+                p1_title: "🚀 Full Mark Platform", p1_desc: "An educational platform for high school students. Designed & Developed by me.",
                 p2_title: "🔐 Security Testing", p2_desc: "Performed penetration testing on various demo environments to ensure security.",
                 btn_visit: "Visit Website", btn_details: "View Details",
                 contact_title: "Contact <span>Me</span>", contact_desc: "Feel free to reach out for any inquiries."
@@ -318,25 +309,23 @@
                 type_text: "أهلاً! أنا عبدالعزيز خالد (الجيزاوي). عمري 18 سنة، طالب في الثانوية العامة. متخصص في برمجة المواقع وتأمينها واكتشاف الثغرات.",
                 btn_projects: "أعمالي", btn_contact: "تواصل معي",
                 proj_title: "أحدث <span>المشاريع</span>",
-                p1_title: " منصة Full Mark", p1_desc: "منصة تعليمية متكاملة لطلاب الثانوية العامة. قمت بتصميمها وبرمجتها بالكامل.",
+                p1_title: "🚀 منصة Full Mark", p1_desc: "منصة تعليمية متكاملة لطلاب الثانوية العامة. قمت بتصميمها وبرمجتها بالكامل.",
                 p2_title: "🔐 اختبار الاختراق", p2_desc: "قمت بتنفيذ اختبارات أمنية واكتشاف ثغرات في بيئات تجريبية مختلفة.",
                 btn_visit: "زيارة الموقع", btn_details: "التفاصيل",
                 contact_title: "تواصل <span>معي</span>", contact_desc: "لا تتردد في التواصل معي لأي استفسار."
             }
         };
 
-        let currentLang = 'en'; // اللغة الحالية
+        let currentLang = 'en';
         const typingElement = document.getElementById('typing-target');
-        let typeInterval; // متغير عشان نتحكم في التايمر
+        let typeInterval;
 
-        // دالة تغيير اللغة
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'ar' : 'en';
             const elements = document.querySelectorAll('[data-key]');
             const body = document.body;
             const langBtn = document.querySelector('.lang-btn');
 
-            // تغيير اتجاه الصفحة وكلاس اللغة
             if (currentLang === 'ar') {
                 body.classList.remove('ltr');
                 body.classList.add('rtl');
@@ -347,22 +336,19 @@
                 langBtn.textContent = translations.en.btn_lang;
             }
 
-            // تغيير النصوص الثابتة
             elements.forEach(el => {
                 const key = el.getAttribute('data-key');
                 if (translations[currentLang][key]) {
-                    el.innerHTML = translations[currentLang][key]; // innerHTML عشان لو فيه الوان span
+                    el.innerHTML = translations[currentLang][key];
                 }
             });
 
-            // إعادة تشغيل الكتابة التلقائية بالنص الجديد
             startTyping(translations[currentLang].type_text);
         }
 
-        // دالة الكتابة التلقائية
         function startTyping(text) {
-            clearInterval(typeInterval); // وقف أي كتابة شغالة
-            typingElement.textContent = ""; // فضي المكان
+            clearInterval(typeInterval);
+            typingElement.textContent = "";
             let i = 0;
             
             typeInterval = setInterval(() => {
@@ -370,12 +356,11 @@
                     typingElement.textContent += text.charAt(i);
                     i++;
                 } else {
-                    clearInterval(typeInterval); // وقف لما تخلص
+                    clearInterval(typeInterval);
                 }
-            }, 50); // سرعة الكتابة
+            }, 50);
         }
 
-        // تشغيل الموقع لأول مرة
         window.onload = function() {
             startTyping(translations.en.type_text);
         };
