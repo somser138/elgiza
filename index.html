@@ -1,159 +1,213 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عبدالعزيز خالد | Web Developer</title>
+    <title>El-Gizawy | Portfolio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #121212; /* لون خلفية غامق وهادي */
-            --card-bg: #1e1e1e;
-            --text-color: #e0e0e0;
-            --accent-color: #3b82f6; /* أزرق احترافي */
+            --bg-color: #0f172a; /* كحلي غامق جداً */
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #38bdf8; /* أزرق سماوي */
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Cairo', sans-serif;
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
             width: 90%;
-            max-width: 600px;
-            background-color: var(--card-bg);
-            padding: 50px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* ظل ناعم */
+            max-width: 700px;
             text-align: center;
-            border-top: 5px solid var(--accent-color); /* لمسة جمالية من فوق */
+            padding: 20px;
         }
 
-        /* تنسيق البيانات الشخصية */
-        .info-list {
-            list-style: none;
-            padding: 0;
-            margin: 30px 0;
-            text-align: right; /* محاذاة لليمين عشان القائمة */
-            display: inline-block; /* عشان تتوسطن في النص */
-            font-size: 1.2em;
-        }
-
-        .info-list li {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #333;
+        /* العنوان اللي طلبت تغييره */
+        .top-header {
+            font-size: 0.9em;
+            letter-spacing: 3px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #334155;
+            display: inline-block;
             padding-bottom: 10px;
         }
 
-        .label {
-            color: var(--accent-color);
-            font-weight: 800;
-            margin-left: 10px;
-        }
-
-        .value {
-            font-weight: 600;
-        }
-
-        /* العنوان الرئيسي */
-        h1 {
-            margin-bottom: 10px;
-            font-size: 2em;
-        }
-
-        .role {
-            color: #888;
-            font-size: 1.1em;
+        /* منطقة الكتابة التلقائية */
+        .typing-area {
+            font-family: 'JetBrains Mono', monospace; /* خط شبه الكود */
+            font-size: 1.4em;
+            min-height: 180px; /* عشان الارتفاع ميتغيرش والكلام بيتكتب */
+            text-align: left; /* الكتابة تبدأ من الشمال */
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border: 1px solid #334155;
+            position: relative;
             margin-bottom: 40px;
+            line-height: 1.8;
         }
 
-        /* قسم المشروع */
-        .project-box {
-            background-color: #252525;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-            border: 1px dashed #444;
+        .highlight {
+            color: var(--accent);
+            font-weight: bold;
         }
 
-        .project-box h3 {
-            color: #fff;
-            margin-top: 0;
+        /* المؤشر اللي بينور ويطفي */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background-color: var(--accent);
+            vertical-align: middle;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* كارت المشروع */
+        .project-card {
+            display: block; /* عشان اللينك ياخد المساحة كلها */
+            text-decoration: none;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid var(--accent);
+            padding: 25px;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0; /* مخفي في الأول لحد ما الكتابة تخلص */
+            animation: fadeIn 1s forwards;
+            animation-delay: 4.5s; /* يظهر بعد ما الكتابة تخلص */
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .project-title {
+            color: white;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .visit-btn {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 0.9em;
         }
 
         /* زر التيليجرام */
-        .telegram-btn {
-            display: inline-block;
+        .social-link {
             margin-top: 40px;
-            text-decoration: none;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 12px 40px;
-            border-radius: 50px;
-            font-weight: bold;
+            display: inline-block;
+            color: var(--text-secondary);
+            font-size: 1.5em;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            animation-delay: 5s;
+        }
+        
+        .social-link:hover {
+            color: var(--accent);
+            transform: scale(1.1);
         }
 
-        .telegram-btn:hover {
-            background-color: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
-        /* تظبيط للموبايل */
-        @media (max-width: 500px) {
-            .info-list { width: 100%; font-size: 1em; }
-            .container { padding: 30px 20px; }
+        /* للموبايل */
+        @media (max-width: 600px) {
+            .typing-area { font-size: 1.1em; padding: 20px; min-height: 150px; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        
-        <h1>عبدالعزيز خالد</h1>
-        <div class="role">&lt; Web Developer /&gt;</div>
+        <div class="top-header">My Personal Portfolio</div>
 
-        <ul class="info-list">
-            <li>
-                <span class="label">الاسم:</span> 
-                <span class="value">عبدالعزيز خالد</span>
-            </li>
-            <li>
-                <span class="label">اللقب:</span> 
-                <span class="value">الجيزاوي</span>
-            </li>
-            <li>
-                <span class="label">السن:</span> 
-                <span class="value">18 سنة</span>
-            </li>
-        </ul>
-
-        <div class="project-box">
-            <h3>أحدث أعمالي</h3>
-            <p style="color: #bbb; line-height: 1.6;">
-                قمت بتصميم وتطوير منصة تعليمية متكاملة<br>
-                <strong style="color: #fff;">Full Mark Platform</strong>
-            </p>
+        <div class="typing-area">
+            <span id="text-target"></span><span class="cursor"></span>
         </div>
 
-        <a href="https://t.me/elgizawy9" target="_blank" class="telegram-btn">
-            تواصل معي على Telegram
+        <a href="https://fulll-mark.vercel.app/" target="_blank" class="project-card">
+            <h3 class="project-title">  Full Mark Platform</h3>
+            <div class="project-desc">A complete educational platform for high school students. Designed & Developed by Me.</div>
+            <div class="visit-btn">Click to Visit website &rarr;</div>
         </a>
 
+        <div style="text-align: center;">
+            <a href="https://t.me/elgizawy9" target="_blank" class="social-link">
+                Telegram Contact
+            </a>
+        </div>
     </div>
+
+    <script>
+        // الكلام اللي هيتكتب (بالانجليزي زي ما طلبت)
+        const content = [
+            "Name: Abdulaziz Khaled",
+            "Nickname: El-Gizawy",
+            "Age: 18 Years Old",
+            "Role: Web Developer",
+        ];
+
+        const target = document.getElementById('text-target');
+        let lineIndex = 0;
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (lineIndex < content.length) {
+                if (charIndex < content[lineIndex].length) {
+                    target.innerHTML += content[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 50); // سرعة الكتابة
+                } else {
+                    // لما يخلص السطر، ينزل سطر جديد
+                    target.innerHTML += "<br><br>"; 
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriter, 300); // يستنى شوية بين السطور
+                }
+            }
+        }
+
+        // تشغيل الوظيفة أول ما الموقع يفتح
+        window.onload = typeWriter;
+    </script>
 
 </body>
 </html>
