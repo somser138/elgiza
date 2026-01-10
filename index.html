@@ -7,14 +7,14 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #111111; /* أسود غامق */
+            --bg-color: #111111;
             --text-color: #ffffff;
-            --main-color: #ff5722; /* برتقالي زي الصورة */
-            --glass-nav: rgba(0, 0, 0, 0.9);
+            --main-color: #ff5722; /* البرتقالي */
+            --glass-nav: rgba(0, 0, 0, 0.95);
         }
 
         * {
@@ -23,17 +23,24 @@
             box-sizing: border-box;
             text-decoration: none;
             list-style: none;
-            scroll-behavior: smooth; /* حركة ناعمة عند التنقل */
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', sans-serif; /* الخط الافتراضي انجليزي */
             overflow-x: hidden;
+            transition: 0.3s;
         }
 
-        /* --- شريط التنقل (Navbar) --- */
+        /* تنسيق خاص للعربي */
+        body.rtl {
+            direction: rtl;
+            font-family: 'Cairo', sans-serif; /* الخط العربي */
+        }
+
+        /* --- شريط التنقل --- */
         header {
             position: fixed;
             width: 100%;
@@ -60,30 +67,56 @@
             color: var(--text-color);
             font-size: 1rem;
             font-weight: 500;
-            margin-left: 35px;
+            margin: 0 20px;
+            transition: 0.3s;
+            position: relative;
+        }
+        .navbar a:hover, .navbar a.active { color: var(--main-color); }
+
+        /* --- زر الترجمة العائم --- */
+        .lang-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px; /* مكان الزرار */
+            background: var(--main-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 0 15px rgba(255, 87, 34, 0.5);
+            font-weight: bold;
+            border: 2px solid transparent;
             transition: 0.3s;
         }
-        .navbar a:hover, .navbar a.active {
+        .lang-btn:hover {
+            background: transparent;
+            border-color: var(--main-color);
             color: var(--main-color);
+            transform: scale(1.1);
         }
+        /* في العربي نعكس مكان الزرار عشان م يضايقش */
+        body.rtl .lang-btn { right: auto; left: 30px; }
 
-        /* --- الأقسام العامة --- */
+        /* --- الأقسام --- */
         section {
-            padding: 100px 10% 80px; /* مسافات عشان الكلام ميكونش لازق */
-            min-height: 100vh; /* كل قسم ياخد حجم الشاشة كامل */
+            padding: 100px 10% 50px;
+            min-height: 100vh;
             display: flex;
             align-items: center;
         }
 
-        /* --- قسم About Me (زي الصورة) --- */
+        /* --- قسم الرئيسية --- */
         .home {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* عمودين: صورة وكلام */
+            grid-template-columns: 1fr 1fr;
             gap: 5rem;
             align-items: center;
         }
+        
+        /* عكس الترتيب في العربي عشان الصورة تيجي شمال والكلام يمين */
+        body.rtl .home { direction: rtl; } 
 
-        /* تنسيق الصورة والدائرة المضيئة */
         .home-img {
             position: relative;
             text-align: center;
@@ -98,27 +131,23 @@
             border: 2px solid var(--main-color);
         }
 
-        /* الدائرة البرتقالي اللي ورا الصورة */
         .circle-glow {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 350px;
-            height: 350px;
+            width: 350px; height: 350px;
             background: var(--main-color);
             border-radius: 50%;
-            filter: blur(60px); /* عشان تعمل التوهج */
+            filter: blur(60px);
             opacity: 0.4;
             z-index: 1;
         }
 
-        /* تنسيق الكلام */
         .home-text h1 {
             font-size: 3.5rem;
             font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .home-text h1 span { color: var(--main-color); }
 
@@ -128,18 +157,22 @@
             color: #ddd;
         }
 
-        .home-text p {
-            font-size: 1rem;
+        /* مكان الكتابة التلقائية */
+        .typing-text {
+            font-size: 1.1rem;
             color: #aaa;
             line-height: 1.8;
             margin-bottom: 30px;
+            min-height: 100px; /* عشان الارتفاع ميتغيرش */
+            border-right: 2px solid var(--main-color); /* مؤشر الكتابة */
+            padding-right: 5px;
+            display: inline-block;
         }
+        
+        /* المؤشر في العربي يكون شمال */
+        body.rtl .typing-text { border-right: none; border-left: 2px solid var(--main-color); padding-left: 5px; }
 
-        /* الأزرار */
-        .btn-box {
-            display: flex;
-            gap: 20px;
-        }
+        .btn-box { display: flex; gap: 20px; }
 
         .btn {
             display: inline-block;
@@ -150,32 +183,23 @@
             font-weight: 600;
             transition: 0.3s;
             box-shadow: 0 0 10px var(--main-color);
+            cursor: pointer;
         }
-
         .btn:hover {
             background: transparent;
             color: var(--main-color);
             border: 2px solid var(--main-color);
             box-shadow: none;
         }
-
         .btn-outline {
             background: transparent;
             border: 2px solid var(--main-color);
             color: var(--main-color);
         }
-        .btn-outline:hover {
-            background: var(--main-color);
-            color: white;
-            box-shadow: 0 0 15px var(--main-color);
-        }
+        .btn-outline:hover { background: var(--main-color); color: white; }
 
-        /* --- قسم المشاريع (Projects) --- */
-        .heading {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 50px;
-        }
+        /* --- قسم المشاريع --- */
+        .heading { text-align: center; font-size: 3rem; margin-bottom: 50px; }
         .heading span { color: var(--main-color); }
 
         .projects-container {
@@ -193,93 +217,169 @@
             transition: 0.4s;
             text-align: center;
         }
-
         .project-box:hover {
             transform: translateY(-10px);
             border-color: var(--main-color);
-            box-shadow: 0 0 20px rgba(255, 87, 34, 0.2);
         }
-
-        .project-box h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .project-box h3 { font-size: 1.5rem; margin-bottom: 10px; color: white; }
         .project-box p { color: #aaa; font-size: 0.9rem; margin-bottom: 15px; }
 
-        /* موبايل (Responsive) */
         @media (max-width: 900px) {
             .home { grid-template-columns: 1fr; text-align: center; }
             .home-img { margin-bottom: 40px; }
-            .circle-glow { width: 250px; height: 250px; }
             header { padding: 15px 5%; }
-            .navbar a { margin-left: 15px; font-size: 0.9rem; }
-            section { padding: 100px 5% 50px; }
+            .navbar a { margin: 0 10px; font-size: 0.8rem; }
+            .lang-btn { bottom: 20px; right: 20px; padding: 8px 15px; }
+            body.rtl .lang-btn { left: 20px; right: auto; }
             .btn-box { justify-content: center; }
         }
     </style>
 </head>
-<body>
+<body class="ltr"> <div class="lang-btn" onclick="toggleLanguage()">عربي</div>
 
     <header>
         <a href="#" class="logo">El-Gizawy<span>.</span></a>
         <nav class="navbar">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <a href="#home" data-key="nav_home">Home</a>
+            <a href="#about" data-key="nav_about">About</a>
+            <a href="#projects" data-key="nav_projects">Projects</a>
+            <a href="#contact" data-key="nav_contact">Contact</a>
         </nav>
     </header>
 
     <section class="home" id="home">
-        
         <div class="home-img">
             <div class="circle-glow"></div>
             <img src="profile.jpg" alt="Abdulaziz">
         </div>
 
         <div class="home-text">
-            <h1>About <span>Me</span></h1>
-            <h3>Web Developer & <span style="color: var(--main-color);">Ethical Hacker</span></h3>
-            <p>
-                Hello! I am Abdalaziz Khaled, famous as "El-Gizawy". <br>
-                I am 18 years old, a High School Student passionate about technology.
-                I specialize in building secure websites and finding vulnerabilities.
-                My goal is to create impactful digital solutions like "Full Mark".
-            </p>
+            <h1 data-key="hero_title">About <span>Me</span></h1>
+            <h3 data-key="hero_role">Web Developer & <span style="color: var(--main-color);">Ethical Hacker</span></h3>
+            
+            <p class="typing-text" id="typing-target"></p>
             
             <div class="btn-box">
-                <a href="#projects" class="btn">My Projects</a>
-                <a href="#contact" class="btn btn-outline">Contact Me</a>
+                <a href="#projects" class="btn" data-key="btn_projects">My Projects</a>
+                <a href="#contact" class="btn btn-outline" data-key="btn_contact">Contact Me</a>
             </div>
         </div>
     </section>
 
-
     <section id="projects" style="flex-direction: column; align-items: normal;">
-        <h2 class="heading">Latest <span>Projects</span></h2>
+        <h2 class="heading" data-key="proj_title">Latest <span>Projects</span></h2>
         
         <div class="projects-container">
             <div class="project-box">
-                <h3>  Full Mark Platform</h3>
-                <p>An educational platform for high school students. Designed & Developed by me.</p>
-                <a href="https://fulll-mark.vercel.app/" target="_blank" class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Visit Website</a>
+                <h3 data-key="p1_title">  Full Mark Platform</h3>
+                <p data-key="p1_desc">An educational platform for high school students. Designed & Developed by me.</p>
+                <a href="https://fulll-mark.vercel.app/" target="_blank" class="btn" data-key="btn_visit">Visit Website</a>
             </div>
             
             <div class="project-box">
-                <h3>🔐 Security Testing</h3>
-                <p>Performed penetration testing on various demo environments to ensure security.</p>
-                <a href="#" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem;">View Details</a>
+                <h3 data-key="p2_title">🔐 Security Testing</h3>
+                <p data-key="p2_desc">Performed penetration testing on various demo environments to ensure security.</p>
+                <a href="#" class="btn btn-outline" data-key="btn_details">View Details</a>
             </div>
         </div>
     </section>
 
-
     <section id="contact" style="flex-direction: column; justify-content: center; text-align: center; min-height: 50vh;">
-        <h2 class="heading">Contact <span>Me</span></h2>
-        <p style="margin-bottom: 30px; color: #aaa;">Feel free to reach out for any inquiries.</p>
+        <h2 class="heading" data-key="contact_title">Contact <span>Me</span></h2>
+        <p style="margin-bottom: 30px; color: #aaa;" data-key="contact_desc">Feel free to reach out for any inquiries.</p>
         
         <div class="btn-box" style="justify-content: center;">
             <a href="https://wa.me/201090747536" target="_blank" class="btn" style="background-color: #25D366; border-color: #25D366; color: #fff;">WhatsApp</a>
             <a href="https://t.me/elgizawy9" target="_blank" class="btn" style="background-color: #229ED9; border-color: #229ED9; color: #fff;">Telegram</a>
         </div>
     </section>
+
+    <script>
+        // نصوص اللغتين
+        const translations = {
+            en: {
+                btn_lang: "عربي",
+                nav_home: "Home", nav_about: "About", nav_projects: "Projects", nav_contact: "Contact",
+                hero_title: "About <span>Me</span>",
+                hero_role: "Web Developer & <span style='color: #ff5722;'>Ethical Hacker</span>",
+                type_text: "Hello! I am Abdulaziz Khaled (El-Gizawy). I am 18 years old, a High School Student. I build secure websites and find vulnerabilities.",
+                btn_projects: "My Projects", btn_contact: "Contact Me",
+                proj_title: "Latest <span>Projects</span>",
+                p1_title: "  Full Mark Platform", p1_desc: "An educational platform for high school students. Designed & Developed by me.",
+                p2_title: "🔐 Security Testing", p2_desc: "Performed penetration testing on various demo environments to ensure security.",
+                btn_visit: "Visit Website", btn_details: "View Details",
+                contact_title: "Contact <span>Me</span>", contact_desc: "Feel free to reach out for any inquiries."
+            },
+            ar: {
+                btn_lang: "English",
+                nav_home: "الرئيسية", nav_about: "من أنا", nav_projects: "مشاريعي", nav_contact: "تواصل معي",
+                hero_title: "من <span>أنا؟</span>",
+                hero_role: "مطور مواقع & <span style='color: #ff5722;'>هاكر أخلاقي</span>",
+                type_text: "أهلاً! أنا عبدالعزيز خالد (الجيزاوي). عمري 18 سنة، طالب في الثانوية العامة. متخصص في برمجة المواقع وتأمينها واكتشاف الثغرات.",
+                btn_projects: "أعمالي", btn_contact: "تواصل معي",
+                proj_title: "أحدث <span>المشاريع</span>",
+                p1_title: " منصة Full Mark", p1_desc: "منصة تعليمية متكاملة لطلاب الثانوية العامة. قمت بتصميمها وبرمجتها بالكامل.",
+                p2_title: "🔐 اختبار الاختراق", p2_desc: "قمت بتنفيذ اختبارات أمنية واكتشاف ثغرات في بيئات تجريبية مختلفة.",
+                btn_visit: "زيارة الموقع", btn_details: "التفاصيل",
+                contact_title: "تواصل <span>معي</span>", contact_desc: "لا تتردد في التواصل معي لأي استفسار."
+            }
+        };
+
+        let currentLang = 'en'; // اللغة الحالية
+        const typingElement = document.getElementById('typing-target');
+        let typeInterval; // متغير عشان نتحكم في التايمر
+
+        // دالة تغيير اللغة
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            const elements = document.querySelectorAll('[data-key]');
+            const body = document.body;
+            const langBtn = document.querySelector('.lang-btn');
+
+            // تغيير اتجاه الصفحة وكلاس اللغة
+            if (currentLang === 'ar') {
+                body.classList.remove('ltr');
+                body.classList.add('rtl');
+                langBtn.textContent = translations.ar.btn_lang;
+            } else {
+                body.classList.remove('rtl');
+                body.classList.add('ltr');
+                langBtn.textContent = translations.en.btn_lang;
+            }
+
+            // تغيير النصوص الثابتة
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key]; // innerHTML عشان لو فيه الوان span
+                }
+            });
+
+            // إعادة تشغيل الكتابة التلقائية بالنص الجديد
+            startTyping(translations[currentLang].type_text);
+        }
+
+        // دالة الكتابة التلقائية
+        function startTyping(text) {
+            clearInterval(typeInterval); // وقف أي كتابة شغالة
+            typingElement.textContent = ""; // فضي المكان
+            let i = 0;
+            
+            typeInterval = setInterval(() => {
+                if (i < text.length) {
+                    typingElement.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeInterval); // وقف لما تخلص
+                }
+            }, 50); // سرعة الكتابة
+        }
+
+        // تشغيل الموقع لأول مرة
+        window.onload = function() {
+            startTyping(translations.en.type_text);
+        };
+    </script>
 
 </body>
 </html>
